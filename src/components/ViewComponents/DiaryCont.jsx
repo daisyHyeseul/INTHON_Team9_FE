@@ -1,15 +1,16 @@
+import { comment } from 'postcss';
 import PropTypes from 'prop-types';
 
-export default function DiaryCont({ date, user }) {
+export default function DiaryCont({ archiveItems }) {
+  const {date, writer, content} = archiveItems
   const formattedDate = new Date(date);
   const year = formattedDate.getFullYear();
   const month = formattedDate.toLocaleString('ko-KR', { month: 'long' });
   const day = formattedDate.getDate();
   return (
+ 
     <div
-      className={`flex flex-col ${
-        user === '나' ? `items-start` : `items-end`
-      } text-white w-5/6 py-6 px-4 rounded-2xl`}
+    className={`flex flex-col ${writer === '나' ? `items-start`  : `items-end`} text-white w-5/6 p-6 rounded-2xl`} 
       style={{ backgroundColor: '#503E7D' }}
     >
       <div className="text-[#e8dfff] text-xs font-normal">
@@ -17,25 +18,24 @@ export default function DiaryCont({ date, user }) {
       </div>
       <div className="title text-center py-[7px]">
         <span className="text-[#e8dfff] text-xl font-semibold">
-          {user === '나' ? `나의 조각글` : `${user}님으로부터`}
+          {writer==='나' ? `나의 조각글` :`${writer}님으로부터`}
         </span>
       </div>
       <div className=" border mt-[7px] border-[#e8dfff] w-full"></div>
       <div className="cont py-4">
         <span className="text-white text-xs font-normal">
-          요즘 내가 잘 하고 있는건지 이렇게 계속 졸업을 미뤄도 되는 건지 고민이
-          될 때가 있다. 주변에 다행히 창업하는 사람들이 있어서 그 사람들을
-          보면서 안도하기도 하지만, 좋은 기업에 취직하는 친구들을 보면 불안하고
-          조급한 마음도 든다. 내가 너무 늦어지는 건 아닐까, 이렇게 늦게까지 취직
-          안해도 나중에 가정을 꾸리고 결혼하고 하는데 문제가 없을까? 무엇보다
-          지금 하는 일이 어떻게 끝이 날지 감조차 오지 않는다.?
-        </span>
+        {content}
+        </span> 
       </div>
     </div>
   );
 }
 
 DiaryCont.propTypes = {
-  date: PropTypes.string,
-  user: PropTypes.string,
+  archiveItems: PropTypes.shape({
+      date: PropTypes.string.isRequired,
+      writer: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+  }).isRequired,
 };
+

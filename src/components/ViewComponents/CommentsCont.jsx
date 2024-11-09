@@ -12,6 +12,7 @@ export default function CommentsCont({ setComment, maxLength, mode, comment }) {
     setComment(textarea.value);
   };
 
+ 
   return (
     <div className="w-full">
       {mode === 'writing' ? (
@@ -26,7 +27,7 @@ export default function CommentsCont({ setComment, maxLength, mode, comment }) {
         <p>{comment}</p>
       )}
     </div>
-  );
+  ); 
 }
 
 CommentsCont.propTypes = {
