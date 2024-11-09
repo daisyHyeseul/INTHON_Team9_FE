@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import React from 'react'
 import Send from './pages/Send'
 import View from './pages/View'
@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 export default function App() {
   
   function Navbar() {
+    const location = useLocation();
+    if (location.pathname !== '/send') {
       return (
           <nav style={{position : 'absolute'}}>
               <Link to="/main">main</Link>
@@ -17,6 +19,8 @@ export default function App() {
               <Link to="/view">view</Link>
           </nav>
       );
+    }
+    return null;
   }
   
 
