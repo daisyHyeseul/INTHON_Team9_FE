@@ -22,8 +22,8 @@ export default function ArchiveComponents({ item }) {
 
     return (
         <div
-            className="archive-grid h-full m-auto rounded-3xl p-4 flex flex-col overflow-auto justify-around gap-2"
-            style={{ backgroundColor: '#514873', width : '90%'}}
+            className="archive-grid w-[159px] h-[228px] m-auto rounded-3xl py-2 px-3 flex flex-col overflow-auto justify-around gap-2"
+            style={{ backgroundColor: '#514873'}}
             onClick={handleClick}
         >
             {/* 상단 날짜와 new 태그 */}
