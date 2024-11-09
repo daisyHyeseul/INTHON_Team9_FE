@@ -86,7 +86,7 @@ export default function Send() {
           <div className="w-full h-full mb-5">
             <img
               className="h-auto w-1/6 m-auto"
-              src="../../public/star.png"
+              src="/star.png"
               alt=""
             /> 
             <p className="text-white text-center text-3xl mb-1 mt-[12px] font-semibold pretendard">

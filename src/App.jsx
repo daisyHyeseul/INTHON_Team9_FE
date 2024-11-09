@@ -51,7 +51,7 @@ export default function App() {
               나의 조각집
             </Link>
             <div className="h-full flex flex-col justify-center items-center text-white cursor-pointer">
-              <img className="h-1/5" src="../public/message.png" alt="" />
+              <img className="h-1/5" src="/message.png" alt="" />
  
               <span onClick={() => navigate('/archive')} className="text-sm pretendard">
  
@@ -79,7 +79,7 @@ font-bold"></span>
               onClick={() => navigate('/archive')}
               className="text-3xl font-semibold"
             >
-              <img className='w-[18px] h-[18px]' src="../public/close.png" alt="" />
+              <img className='w-[18px] h-[18px]' src="/close.png" alt="" />
             </span>
           </div>
         ))}

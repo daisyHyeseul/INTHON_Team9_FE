@@ -51,7 +51,7 @@ export default function Submitted() {
         style={{ position: 'absolute', top: 0, left: 0 }}
       >
         <div className="w-full flex flex-col justify-center items-center">
-          <img className="h-1/6 mb-5" src="../../public/star.png" alt="" />
+          <img className="h-1/6 mb-5" src="/star.png" alt="" />
           <h2 className="text-white text-2xl font-semibold pretendard">오늘의 조각글이</h2>
           <h2 className="text-white text-2xl font-semibold mb-5 pretendard">
             도착했습니다.
@@ -110,7 +110,7 @@ export default function Submitted() {
         style={{ position: 'absolute', top: 0, left: 0 }}
       >
         <div className="w-full flex flex-col justify-center items-center">
-          <img className="h-1/6 mb-5" src="../../public/star.png" alt="" />
+          <img className="h-1/6 mb-5" src="/star.png" alt="" />
           <h2 className="text-white text-2xl font-semibold pretendard">조각글과 답장이</h2>
           <h2 className="text-white text-2xl font-semibold mb-5 pretendard">
             전송되었습니다.
