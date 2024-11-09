@@ -38,33 +38,31 @@ export default function Send() {
         setErrors(newErrors);
         // 에러가 없을 때만 폼을 제출
         if (!newErrors.phoneNumber && !newErrors.nickname && !newErrors.journalEntry) {
-            // const formData = {
-            //     phoneNumber,
-            //     nickname,
-            //     journalEntry,
-            // };
-            navigate('/submitted')
-            // try {
-            //     const response = await fetch('/api/submit', {
-            //         method: 'POST',
-            //         headers: {
-            //             'Content-Type': 'application/json',
-            //         },
-            //         body: JSON.stringify(formData),
-            //     });
+            const formData = {
+                phoneNumber,
+                nickname,
+                journalEntry,
+            };
+            try {
+                const response = await fetch('https://2d56-163-152-3-142.ngrok-free.app/api/v1/post', {
+                    method: 'POST',
+                    body: formData,
+                });
 
-            //     if (response.ok) {
-            //         console.log('Data submitted successfully:', formData);
-            //         setPhoneNumber('');
-            //         setNickname('');
-            //         setJournalEntry('');
-            //         navigate('/Submitted');
-            //     } else {
-            //         console.error('Failed to submit data');
-            //     }
-            // } catch (error) {
-            //     console.error('Error submitting data:', error);
-            // }
+                const responseData = await response.json();
+
+                if (response.ok) {
+                    console.log('Data submitted successfully:', responseData);
+                    setPhoneNumber('');
+                    setNickname('');
+                    setJournalEntry('');
+                    navigate('/Submitted');
+                } else {
+                    console.error('Failed to submit data');
+                }
+            } catch (error) {
+                console.error('Error submitting data:', error);
+            }
 
         }
     };
