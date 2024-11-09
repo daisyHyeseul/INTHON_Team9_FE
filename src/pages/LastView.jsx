@@ -64,14 +64,15 @@ export default function LastView() {
 
 
             {/* 글 조각 소개 */}
-            <div  onClick={() => setIsModalOpen(true)} className="text-center mb-6 flex flex-col justify-center items-center gap-2 py-3 w-5/6 rounded-2xl text-black" style={{backgroundColor :'#D4D2D9'}}> 
+            <div  onClick={() => setIsModalOpen(true)} className="text-center flex flex-col justify-center items-center gap-2 py-3 w-5/6 rounded-xl bg-white/90 text-black" > 
                 <img src={iconSrc} alt="type icon" className="h-5 mb-2" />
 
                 <p className="text-xs font-normal m-0 pretendard">{data.summary}</p>
                 <p className="text-xs font-semibold m-0 pretendard">{data.ai} - {data.title}</p>
 
             </div>
-            <img className='h-16' src="/star.png" alt="" />
+ 
+            <img className='h-16 my-5' src="/star.png" alt="" /> 
             <div className='flex flex-col gap-10 justify-center items-center'>
                 <DiaryCont archiveItems={view === 'myCont' ? archiveItemsToUnknown : archiveItemsFromUnknown}></DiaryCont>
                 <Comments items={view === 'myCont' ?  commentItemsFromUnknown :commentItemsToUnknown }></Comments>

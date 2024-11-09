@@ -42,8 +42,10 @@ export default function LoginForm() {
  
   return (
     <div className="login-form-container w-full h-full flex flex-col justify-center items-center gap-10">
-      <div className="form-group flex flex-col text-white  gap-2">
-        <label className="text-purple-100 text-xs font-medium pretendard">전화번호</label>
+ 
+      <div className="form-group flex flex-col text-white w-5/6 gap-2">
+        <label className="text-purple-100 form-label text-xs font-normal pretendard">전화번호</label>
+ 
         <input
           type="text"
           placeholder="전화번호를 입력해주세요."
@@ -54,9 +56,9 @@ export default function LoginForm() {
           }
         />
       </div>
-
-      <div className="form-group flex flex-col text-white pretendard gap-2">
-        <div className="flex items-center justify-start">
+ 
+      <div className="form-group flex flex-col text-white w-5/6 pretendard gap-2">
+      <div className="flex items-center justify-start">
           <label className="text-purple-100 text-xs font-medium pretendard">
             비밀번호
             <span className="ml-2 text-white/60 text-[10px] font-normal pretendard">
@@ -65,6 +67,7 @@ export default function LoginForm() {
           </label>
  
         </div>
+ 
         <input
           type="password"
           placeholder="비밀번호를 입력해주세요."
