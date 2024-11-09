@@ -9,15 +9,34 @@ export default function LastView() {
     const year = formattedDate.getFullYear();
     const month = formattedDate.toLocaleString('ko-KR', { month: 'long' });
     const day = formattedDate.getDate();
+    const [view,setView] = useState('myCont')
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const typeIcons = {
         writing: '/public/writing_filled.png',
         film: '/public/film_filled.png',
         music: '/public/music_filled.png',    // 예시: 음악 관련 type
         picture: '/public/picture_filled.png',
     };
+    const archiveItemsToUnknown = {
+        date: data.date,
+        writer: '나',
+        content: data.content,
+    };
+    const archiveItemsFromUnknown = {
+        date: data.date,
+        writer: data.writer,
+        content: data.content,
+    };
+    const commentItemsFromUnknown = {
+        user : '나',
+        content : '요즘 내가 잘 하고 있는건지 이렇게 계속 졸업을 미뤄도 되는 건지 고민이 될 때가 있다.주변에 다행히 창업하는 사람들이 있어서 그 사람들을 보면서 안도하기도 하지만, '
+    }
+    const commentItemsToUnknown = {
+        user :  '도담',
+        content : '요즘 에 다행히 창업하는 사람들이 있어서 그 사람들을 보면서 안도하기도 하지만, '
+    }
     const iconSrc = typeIcons[data.type];
-    const [view,setView] = useState('myCont')
-    const [isModalOpen, setIsModalOpen] = useState(false);
+
     useEffect(()=>{
         document.querySelector('.lastViewTitle').textContent=`${year}년 ${month} ${day}일의 조각글`;
     },[])
@@ -43,13 +62,15 @@ export default function LastView() {
             {/* 글 조각 소개 */}
             <div  onClick={() => setIsModalOpen(true)} className="text-center mb-6 flex flex-col justify-center items-center gap-2 py-3 w-5/6 rounded-2xl text-black" style={{backgroundColor :'#D4D2D9'}}> 
                 <img src={iconSrc} alt="type icon" className="h-5 mb-2" />
+ 
                 <p className="text-xs font-semibold m-0 pretendard">{data.summary}</p>
-                <p className="text-xs font-semibold m-0 pretendard">{data.writer} - {data.title}</p>
+                <p className="text-xs font-semibold m-0 pretendard">{data.ai} - {data.title}</p>
+ 
             </div>
             <img className='h-16' src="../../public/star.png" alt="" />
             <div className='flex flex-col gap-10 justify-center items-center'>
-                <DiaryCont date={'2024-11-09'} user ={view === 'myCont' ? '나' : '도담'}></DiaryCont>
-                <Comments user ={view === 'myCont' ? '나' : '도담'}></Comments>
+                <DiaryCont archiveItems={view === 'myCont' ? archiveItemsToUnknown : archiveItemsFromUnknown}></DiaryCont>
+                <Comments items={view === 'myCont' ?  commentItemsFromUnknown :commentItemsToUnknown }></Comments>
             </div>
             {/* {모달} */}
             {isModalOpen && (

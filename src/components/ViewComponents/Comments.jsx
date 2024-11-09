@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import CommentsCont from './CommentsCont';
 
+ 
 // eslint-disable-next-line react/prop-types
 export default function Comments({ comment, setComment, maxLength, mode }) {
   return (
@@ -13,6 +14,7 @@ export default function Comments({ comment, setComment, maxLength, mode }) {
           comment={'잘했어'}
           maxLength={maxLength}
         ></CommentsCont>
+ 
       </div>
 
       {/* <div className="absolute bottom-0 text-white/60 text-xs font-normal">

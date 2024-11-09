@@ -1,6 +1,7 @@
 import { useState } from 'react';
-
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { setNumber } from '../features/userSlice';
 
 export default function Send() {
   const maxChars = 500;
@@ -12,6 +13,7 @@ export default function Send() {
     nickname: false,
     journalEntry: false,
   });
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const currentDate = new Date();
@@ -38,38 +40,38 @@ export default function Send() {
     };
 
     setErrors(newErrors);
-    // 에러가 없을 때만 폼을 제출
     if (
       !newErrors.phoneNumber &&
       !newErrors.nickname &&
       !newErrors.journalEntry
     ) {
-      // const formData = {
-      //     phoneNumber,
-      //     nickname,
-      //     journalEntry,
-      // };
+ 
+      dispatch(setNumber(phoneNumber));
       navigate('/submitted');
       // try {
-      //     const response = await fetch('/api/submit', {
+      //     // FormData 생성
+      //     const formData = new FormData();
+      //     formData.append('content', journalEntry);
+      //     formData.append('nickname', nickname);
+      //     formData.append('phone', phoneNumber);
+
+      //     // API 요청
+      //     const response = await fetch('https://2d56-163-152-3-142.ngrok-free.app/api/v1/post', {
       //         method: 'POST',
-      //         headers: {
-      //             'Content-Type': 'application/json',
-      //         },
-      //         body: JSON.stringify(formData),
+      //         body: formData
       //     });
 
+      //     // 응답 처리
+      //     const result = await response.json();
       //     if (response.ok) {
-      //         console.log('Data submitted successfully:', formData);
-      //         setPhoneNumber('');
-      //         setNickname('');
-      //         setJournalEntry('');
-      //         navigate('/Submitted');
+      //         console.log(result.message);
+      //         navigate('/submitted'); // 성공 시 페이지 이동
       //     } else {
-      //         console.error('Failed to submit data');
+      //         console.error('저장 실패:', result);
       //     }
       // } catch (error) {
-      //     console.error('Error submitting data:', error);
+      //     console.error('API 요청 오류:', error);
+ 
       // }
     }
   };
@@ -86,9 +88,9 @@ export default function Send() {
               className="h-auto w-1/6 m-auto"
               src="../../public/star.png"
               alt=""
-            />
+            /> 
             <p className="text-white text-center text-3xl mb-1 mt-[12px] font-semibold pretendard">
-              {formattedDate}의 조각글
+              {formattedDate}의 조각글 
             </p>
             <p className="text-purple-100 text-center text-base pretendard">
               나의 조각글을 남기고 다른 조각글을 받아봐요
@@ -96,11 +98,12 @@ export default function Send() {
           </div>
           {/* 전화번호 필드 */}
           <div>
-            <div className="flex items-center justify-start">
+            <div className="flex items-center justify-start"> 
               <label className="text-purple-100 text-xs font-medium pretendard">
                 전화번호
               </label>
               <span className="ml-2 text-white/60 text-[10px] font-normal font-['Pretendard Variable'] pretendard">
+ 
                 *전화번호로 비밀번호와 답변 알림을 보내드려요
               </span>
             </div>
@@ -113,13 +116,16 @@ export default function Send() {
               className={`text-white transition-all duration-100 form-input-tel mt-[7px] px-5 py-2 text-xs outline-none 
                             focus:border-solid focus:border-white focus:border w-[306px] h-9 bg-[#7763a5]/50 rounded-[18px] ${
                               errors.phoneNumber ? 'wrong' : ''
+ 
                             } pretendard`}
+ 
               style={{ backgroundColor: '#6C548C' }}
             />
           </div>
           {/* 닉네임 필드 */}
-          <div>
+          <div> 
             <div className="text-xs font-medium text-purple-100 pretendard">닉네임</div>
+ 
             <input
               id="nickname"
               type="text"
@@ -131,13 +137,16 @@ export default function Send() {
                                       errors.nickname && nickname === ''
                                         ? 'wrong'
                                         : ''
+ 
                                     } text-xs outline-none focus:border-solid focus:border-white focus:border pretendard`}
+ 
               style={{ backgroundColor: '#6C548C' }}
             />
           </div>
           <div>
-            {/* 조각글 필드 */}
+            {/* 조각글 필드 */} 
             <label className="text-xs font-medium text-purple-100 pretendard">
+ 
               조각글
             </label>
             <div className="relative w-full">
@@ -153,17 +162,20 @@ export default function Send() {
                               errors.journalEntry && journalEntry === ''
                                 ? 'wrong'
                                 : ''
+ 
                             } pretendard`}
                 style={{ backgroundColor: '#6C548C' }}
               />
               <div className="absolute bottom-4 right-3 text-white/60 text-xs font-normal pretendard">
+ 
                 {journalEntry.length}/{maxChars}
               </div>
             </div>
           </div>
           <button
-            onClick={handleSubmit}
+            onClick={handleSubmit} 
             className="w-[306px] h-[39px] bg-white/80 py-2 text-[#2d1a58] text-xs rounded-full pretendard"
+ 
           >
             띄워보내기
           </button>
