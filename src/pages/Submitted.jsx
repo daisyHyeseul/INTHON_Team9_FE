@@ -22,7 +22,7 @@ export default function Submitted() {
   }, [issent]);
   const onsubmit = () => {
     if (comment.length === 0) {
-      document.querySelector('.writing-area').classList.add('wrong');
+      document.querySelector('.writing-area') ? document.querySelector('.writing-area').classList.add('wrong') : '';
     } else {
       setIssent('end');
     }

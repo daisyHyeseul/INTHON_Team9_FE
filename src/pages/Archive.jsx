@@ -43,32 +43,23 @@ export default function Main() {
       title: 'The Road Not Taken',
     },
   ];
-
-  return (
-    <div className="w-full h-full relative flex justify-center items-center overflow-hidden">
-      <div
-        className={`w-full h-full transition-transform duration-500 ${
-          !login ? 'translate-x-0' : '-translate-x-full'
-        }`}
-        style={{ position: 'absolute', top: 0, left: 0 }}
-      >
-        <LoginForm />
-      </div>
-      <div
-        className={`archive-grid  flex flex-wrap justify-between h-full overflow-auto transition-transform duration-500 ${
-          login ? 'translate-x-0 ' : 'translate-x-full'
-        }`}
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: login ? '5%' : '100%',
-          width: '90%',
-        }}
-      >
-        {archiveItems.map((item, index) => (
-          <ArchiveComponents key={index} item={item} />
-        ))}
-      </div>
-    </div>
-  );
+ 
+    return (
+        <div className="w-full h-full relative flex justify-center items-center overflow-hidden">
+            <div className={`w-full h-full transition-transform duration-500 ${!login  ? 'translate-x-0' : '-translate-x-full'}`}
+                style={{ position: 'absolute', top: 0, left: 0 }}>
+                <LoginForm/>
+            </div>
+            <div className={`archive-grid  grid grid-cols-2 justify-between w-full h-auto gap-y-5 overflow-auto transition-transform duration-500 ${login  ? 'translate-x-0 ' : 'translate-x-full'}`}
+                style={{ position: 'absolute', top: 0, left: login ? '5%' : '100%', width:'90%' }}>
+                {archiveItems.map((item, index) => (
+                    <div key={index} className='w-full h-full'>
+                        <ArchiveComponents  item={item} />
+                    </div>
+                ))}
+                
+            </div>
+        </div>
+    )
+ 
 }

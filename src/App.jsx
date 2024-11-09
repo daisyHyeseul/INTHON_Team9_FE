@@ -52,7 +52,9 @@ export default function App() {
             </Link>
             <div className="h-full flex flex-col justify-center items-center text-white cursor-pointer">
               <img className="h-1/5" src="../public/message.png" alt="" />
+ 
               <span onClick={() => navigate('/archive')} className="text-sm pretendard">
+ 
                 보관함
               </span>
             </div>
@@ -71,12 +73,13 @@ export default function App() {
             className="flex w-5/6 justify-between items-center text-white"
             style={{ height: '10%' }}
           >
-            <span className="lastViewTitle text-xl font-semibold"></span>
+            <span className="lastViewTitle text-base
+font-bold"></span>
             <span
               onClick={() => navigate('/archive')}
               className="text-3xl font-semibold"
             >
-              X
+              <img className='w-[18px] h-[18px]' src="../public/close.png" alt="" />
             </span>
           </div>
         ))}
