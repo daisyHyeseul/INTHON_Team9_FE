@@ -12,10 +12,10 @@ export default function LastView() {
     const [view,setView] = useState('myCont')
     const [isModalOpen, setIsModalOpen] = useState(false);
     const typeIcons = {
-        writing: '/public/writing_filled.png',
-        film: '/public/film_filled.png',
-        music: '/public/music_filled.png',    // 예시: 음악 관련 type
-        picture: '/public/picture_filled.png',
+        writing: '/writing_filled.png',
+        film: '/film_filled.png',
+        music: '/music_filled.png',    // 예시: 음악 관련 type
+        picture: '/picture_filled.png',
     };
     const archiveItemsToUnknown = {
         date: data.date,
@@ -71,7 +71,7 @@ export default function LastView() {
                 <p className="text-xs font-semibold m-0 pretendard">{data.ai} - {data.title}</p>
 
             </div>
-            <img className='h-16' src="../../public/star.png" alt="" />
+            <img className='h-16' src="/star.png" alt="" />
             <div className='flex flex-col gap-10 justify-center items-center'>
                 <DiaryCont archiveItems={view === 'myCont' ? archiveItemsToUnknown : archiveItemsFromUnknown}></DiaryCont>
                 <Comments items={view === 'myCont' ?  commentItemsFromUnknown :commentItemsToUnknown }></Comments>

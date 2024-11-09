@@ -9,10 +9,10 @@ export default function ArchiveComponents({ item }) {
     const formattedDate = date.replace(/-/g, '.');
     
     const typeIcons = {
-        writing: '/public/writing.png',
-        film: '/public/film.png',
-        music: '/public/music.png',    // 예시: 음악 관련 type
-        picture: '/public/picture.png',
+        writing: '/writing.png',
+        film: '/film.png',
+        music: '/music.png',    // 예시: 음악 관련 type
+        picture: '/picture.png',
     };
     const iconSrc = typeIcons[type];
     const navigate = useNavigate();
