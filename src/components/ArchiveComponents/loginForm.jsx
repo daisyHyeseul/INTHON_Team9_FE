@@ -43,7 +43,7 @@ export default function LoginForm() {
   return (
     <div className="login-form-container w-full h-full flex flex-col justify-center items-center gap-10">
  
-      <div className="form-group flex flex-col text-white w-5/6 gap-2">
+      <div className="form-group flex flex-col text-white w-[306px] gap-2">
         <label className="text-purple-100 form-label text-xs font-normal pretendard">전화번호</label>
  
         <input
@@ -57,7 +57,7 @@ export default function LoginForm() {
         />
       </div>
  
-      <div className="form-group flex flex-col text-white w-5/6 pretendard gap-2">
+      <div className="form-group flex flex-col text-white w-[306px] pretendard gap-2">
       <div className="flex items-center justify-start">
           <label className="text-purple-100 text-xs font-medium pretendard">
             비밀번호
@@ -73,7 +73,7 @@ export default function LoginForm() {
           placeholder="비밀번호를 입력해주세요."
           value={password}
           onChange={handlePasswordChange}
-          className="form-input-password px-5 py-2 w-[306px] h-9 bg-[#7763a5]/50 pretendard rounded-[18px] "
+          className={`text-white pretendard transition-all duration-100 form-input-tel mt-[7px] px-5 py-2 text-xs outline-none focus:border-solid focus:border-white focus:border w-[306px] h-9 bg-[#7763a5]/50 rounded-[18px]`}
         />
       </div>
       <button
