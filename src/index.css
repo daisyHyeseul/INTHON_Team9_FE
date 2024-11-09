@@ -90,3 +90,7 @@ textarea::placeholder {
     opacity: 1;
   }
 }
+
+.pretendard {
+  font-family: 'Pretendard', sans-serif !important;
+}

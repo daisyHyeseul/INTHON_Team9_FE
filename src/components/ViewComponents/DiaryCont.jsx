@@ -22,7 +22,7 @@ export default function DiaryCont({ date, user }) {
       </div>
       <div className=" border mt-[7px] border-[#e8dfff] w-full"></div>
       <div className="cont py-4">
-        <span className="text-white text-xs font-normal">
+        <span className="text-white text-xs font-normal pretendard">
           요즘 내가 잘 하고 있는건지 이렇게 계속 졸업을 미뤄도 되는 건지 고민이
           될 때가 있다. 주변에 다행히 창업하는 사람들이 있어서 그 사람들을
           보면서 안도하기도 하지만, 좋은 기업에 취직하는 친구들을 보면 불안하고

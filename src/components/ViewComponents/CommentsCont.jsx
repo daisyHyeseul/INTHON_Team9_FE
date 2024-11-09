@@ -19,7 +19,7 @@ export default function CommentsCont({ setComment, maxLength, mode, comment }) {
           ref={textareaRef}
           onInput={handleInput}
           maxLength={maxLength}
-          className="bg-transparent outline-none w-full h-auto resize-none"
+          className="bg-transparent outline-none w-full h-auto resize-none pretendard"
           placeholder="나를 닮은 그 사람에게 해주고 싶은 말을 적어주세요."
         />
       ) : (

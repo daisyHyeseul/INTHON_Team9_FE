@@ -8,7 +8,7 @@ export default function Comments ({user}){
             `내가 남긴 말` }</span></div>
             <div className='border-solid border-b-2 border-white w-full'></div>
             <div className="cont py-5">
-                <span className='text-base '>요즘 내가 잘 하고 있는건지 이렇게 계속 졸업을 미뤄도 되는 건지 고민이 될 때가 있다.
+                <span className='text-base pretendard'>요즘 내가 잘 하고 있는건지 이렇게 계속 졸업을 미뤄도 되는 건지 고민이 될 때가 있다.
                 주변에 다행히 창업하는 사람들이 있어서 그 사람들을 보면서 안도하기도 하지만, 
                 </span>   
             </div>

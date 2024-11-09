@@ -38,11 +38,11 @@ export default function ArchiveComponents({ date, isnew,type, summary, writer, t
                         {month} {day}일
                     </div>
                 </div>
-                {isnew && <span className="text-sm text-purple-100 font-semibold">new</span>}
+                {isnew && <span className="text-sm text-purple-100 font-semibold pretendard">new</span>}
             </div>
 
             {/* 요약 텍스트 */}
-            <div className="text-white  text-sm  flex items-start flex-col gap-3 ">
+            <div className="text-white  text-sm  flex items-start flex-col gap-3 pretendard">
                 <img src={iconSrc} alt="type icon" className="h-5" /> {/* 조건부 아이콘 */}
                 {summary}
             </div>
@@ -50,8 +50,8 @@ export default function ArchiveComponents({ date, isnew,type, summary, writer, t
 
             {/* 작가 및 제목 */}
             <div className="text-white">
-                <div className="text-sm font-semibold">{writer}</div>
-                <div className="text-xs">- {title}</div>
+                <div className="text-sm font-semibold pretendard">{writer}</div>
+                <div className="text-xs pretendard">- {title}</div>
             </div>
         </div>
     );
