@@ -3,11 +3,76 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'font';
+  src: url('../public/NanumMyeongjo.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+.arriveCont::-webkit-scrollbar {
+  width: 4px;
+}
 
+.arriveCont::-webkit-scrollbar-track {
+  background: transparent
+}
+
+.arriveCont::-webkit-scrollbar-thumb {
+  background: #D5D1DE;
+  border-radius: 10px;
+}
+.arriveCont::-webkit-scrollbar-thumb:hover {
+  background: #ad9cd3;
+}
+.archive-grid::-webkit-scrollbar {
+  width: 4px;
+}
+
+.archive-grid::-webkit-scrollbar-track {
+  background: transparent
+}
+
+.archive-grid::-webkit-scrollbar-thumb {
+  background: #D5D1DE;
+  border-radius: 10px;
+}
+.archive-grid::-webkit-scrollbar-thumb:hover {
+  background: #ad9cd3;
+}
 body{
   width: 100vw;
   height: 100vh;
   margin: 0;
   position: relative;
   overflow: hidden;
+  background-color: #321E5B;
+  /* background: linear-gradient(to bottom, #321E5B, #9B6C9F); */
+  font-family: 'font', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+#root{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  height: 95%;
+}
+
+.wrong{
+  border: 2px solid red;
+}
+
+@keyframes scaleUp {
+  0% {
+      transform: scale(0.9);
+      opacity: 0;
+  }
+  100% {
+      transform: scale(1);
+      opacity: 1;
+  }
 }
