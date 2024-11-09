@@ -8,14 +8,24 @@ export default function DiaryCont({ archiveItems }) {
   const month = formattedDate.toLocaleString('ko-KR', { month: 'long' });
   const day = formattedDate.getDate();
   return (
-    <div className={`flex flex-col ${writer === '나' ? `items-start`  : `items-end`} text-white w-5/6 p-6 rounded-2xl`} style={{backgroundColor : '#503E7D'}}>
-      <h6>{year}년 {month} {day}일,</h6>
-      <div className="title text-center  py-5"><span className='text-2xl'>{writer==='나' ? `나의 조각글` : 
-      `${writer}님으로부터` }</span></div>
-      <div className='border-solid border-b-2 border-white w-full'></div>
-      <div className="cont py-5">
-        <span className='text-base '> {content}
-        </span>   
+ 
+    <div
+    className={`flex flex-col ${writer === '나' ? `items-start`  : `items-end`} text-white w-5/6 p-6 rounded-2xl`} 
+      style={{ backgroundColor: '#503E7D' }}
+    >
+      <div className="text-[#e8dfff] text-xs font-normal">
+        {year}년 {month} {day}일,
+      </div>
+      <div className="title text-center py-[7px]">
+        <span className="text-[#e8dfff] text-xl font-semibold">
+          {writer==='나' ? `나의 조각글` :`${writer}님으로부터`}
+        </span>
+      </div>
+      <div className=" border mt-[7px] border-[#e8dfff] w-full"></div>
+      <div className="cont py-4">
+        <span className="text-white text-xs font-normal">
+        {content}
+        </span> 
       </div>
     </div>
   );

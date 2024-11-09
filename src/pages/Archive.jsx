@@ -1,8 +1,8 @@
+import LoginForm from '../components/ArchiveComponents/loginForm';
+import ArchiveComponents from '../components/ArchiveComponents/archiveComp';
 
-import LoginForm from "../components/ArchiveComponents/loginForm";
-import ArchiveComponents from "../components/ArchiveComponents/archiveComp";
 import { useSelector } from 'react-redux';
-
+ 
 export default function Main()
 {
 
@@ -60,3 +60,4 @@ export default function Main()
         </div>
     )
 }
+ 

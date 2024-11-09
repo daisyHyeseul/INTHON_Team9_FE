@@ -41,6 +41,7 @@ export default function LoginForm (){
         // }
          // 클릭 시 login 상태를 true로 변경
     };
+
     return (
         <div className="login-form-container w-full h-full flex flex-col justify-center items-center gap-10">
             <div className="form-group flex flex-col text-white w-5/6 gap-2">
