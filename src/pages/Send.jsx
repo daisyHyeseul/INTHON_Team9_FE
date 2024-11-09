@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setNumber } from '../features/userSlice'
 
 export default function Send() {
     const maxChars = 500;
@@ -11,6 +13,7 @@ export default function Send() {
         nickname: false,
         journalEntry: false,
     });
+    const dispatch = useDispatch()
     const navigate = useNavigate();
     const handleInputChange = (event) => {
         setJournalEntry(event.target.value);
@@ -24,6 +27,7 @@ export default function Send() {
         setNickname(event.target.value);
     };
 
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         
@@ -32,36 +36,35 @@ export default function Send() {
             nickname: nickname.trim() === '', // 닉네임이 비어있는지 확인
             journalEntry: journalEntry.trim() === '' // journalEntry가 비어있는지 확인
         };
-
+        
         setErrors(newErrors);
-        // 에러가 없을 때만 폼을 제출
         if (!newErrors.phoneNumber && !newErrors.nickname && !newErrors.journalEntry) {
-            // const formData = {
-            //     phoneNumber,
-            //     nickname,
-            //     journalEntry,
-            // };
-            navigate('/submitted')
+            
+            dispatch(setNumber(phoneNumber));
+            navigate('/submitted');
             // try {
-            //     const response = await fetch('/api/submit', {
+            //     // FormData 생성
+            //     const formData = new FormData();
+            //     formData.append('content', journalEntry);
+            //     formData.append('nickname', nickname);
+            //     formData.append('phone', phoneNumber);
+                
+            //     // API 요청
+            //     const response = await fetch('https://2d56-163-152-3-142.ngrok-free.app/api/v1/post', {
             //         method: 'POST',
-            //         headers: {
-            //             'Content-Type': 'application/json',
-            //         },
-            //         body: JSON.stringify(formData),
+            //         body: formData
             //     });
 
+            //     // 응답 처리
+            //     const result = await response.json();
             //     if (response.ok) {
-            //         console.log('Data submitted successfully:', formData);
-            //         setPhoneNumber('');
-            //         setNickname('');
-            //         setJournalEntry('');
-            //         navigate('/Submitted');
+            //         console.log(result.message);
+            //         navigate('/submitted'); // 성공 시 페이지 이동
             //     } else {
-            //         console.error('Failed to submit data');
+            //         console.error('저장 실패:', result);
             //     }
             // } catch (error) {
-            //     console.error('Error submitting data:', error);
+            //     console.error('API 요청 오류:', error);
             // }
         }
     };

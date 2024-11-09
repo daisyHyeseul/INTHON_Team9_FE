@@ -17,7 +17,7 @@ export default function CommentsCont({setComment, mode, comment }) {
                 <textarea
                     ref={textareaRef}
                     onInput={handleInput}
-                    className="bg-transparent outline-none w-full h-auto resize-none"
+                    className="bg-transparent outline-none w-full h-auto resize-none "
                     placeholder="댓글을 작성하세요"
                 />
             ) : (
