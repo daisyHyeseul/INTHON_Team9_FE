@@ -30,7 +30,7 @@ export default function Send() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const newErrors = {
-            phoneNumber: !/^\d{3}-\d{3,4}-\d{4}$/.test(phoneNumber), // 정규식으로 폰번호 확인 (예: 010-1234-5678)
+            phoneNumber: !/^\d{10,11}$/.test(phoneNumber), // 정규식으로 폰번호 확인 (예: 010-1234-5678)
             nickname: nickname.trim() === '', // 닉네임이 비어있는지 확인
             journalEntry: journalEntry.trim() === '' // journalEntry가 비어있는지 확인
         };
@@ -38,32 +38,34 @@ export default function Send() {
         setErrors(newErrors);
         // 에러가 없을 때만 폼을 제출
         if (!newErrors.phoneNumber && !newErrors.nickname && !newErrors.journalEntry) {
-            const formData = {
-                phoneNumber,
-                nickname,
-                journalEntry,
-            };
-            try {
-                const response = await fetch('https://2d56-163-152-3-142.ngrok-free.app/api/v1/user', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData),
-                });
+            // const formData = {
+            //     phoneNumber,
+            //     nickname,
+            //     journalEntry,
+            // };
+            navigate('/submitted')
+            // try {
+            //     const response = await fetch('/api/submit', {
+            //         method: 'POST',
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //         },
+            //         body: JSON.stringify(formData),
+            //     });
 
-                if (response.ok) {
-                    console.log('Data submitted successfully:', formData);
-                    setPhoneNumber('');
-                    setNickname('');
-                    setJournalEntry('');
-                    navigate('/Submitted');
-                } else {
-                    console.error('Failed to submit data');
-                }
-            } catch (error) {
-                console.error('Error submitting data:', error);
-            }
+            //     if (response.ok) {
+            //         console.log('Data submitted successfully:', formData);
+            //         setPhoneNumber('');
+            //         setNickname('');
+            //         setJournalEntry('');
+            //         navigate('/Submitted');
+            //     } else {
+            //         console.error('Failed to submit data');
+            //     }
+            // } catch (error) {
+            //     console.error('Error submitting data:', error);
+            // }
+
         }
     };
 
@@ -94,10 +96,11 @@ export default function Send() {
                         type="tel"
                         value={phoneNumber}
                         onChange={handlePhoneNumberChange}
-                        placeholder="전화번호를 입력해주세요."
-
+ 
+                        placeholder="ex) 01011112222"
+ 
                         className={`text-white transition-all duration-100 form-input-tel px-5 py-2 rounded-3xl text-sm outline-none 
-                            focus:border-solid focus:border-white focus:border-2  ${errors.phoneNumber && phoneNumber === '' ? 'wrong' : ''}`}
+                            focus:border-solid focus:border-white focus:border-2  ${errors.phoneNumber ? 'wrong' : ''}`}
                         style={{backgroundColor:'#6C548C'}}
                     />
 
@@ -111,8 +114,9 @@ export default function Send() {
                         type="text"
                         value={nickname}
                         onChange={handleNicknameChange}
-                        placeholder="닉네임을 입력해주세요."
-
+ 
+                        placeholder="ex) nickname"
+ 
                         className={`text-white transition-all duration-100 form-input-tel px-5 py-2 rounded-3xl 
                                     ${errors.nickname && nickname==='' ? 'wrong' : ''} text-sm outline-none focus:border-solid focus:border-white focus:border-2`}
                     style={{backgroundColor:'#6C548C'}}
