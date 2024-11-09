@@ -44,7 +44,7 @@ export default function Send() {
                 journalEntry,
             };
             try {
-                const response = await fetch('https://2d56-163-152-3-142.ngrok-free.app/post/test', {
+                const response = await fetch('https://2d56-163-152-3-142.ngrok-free.app/api/v1/user', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
