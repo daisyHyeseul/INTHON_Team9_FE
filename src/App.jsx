@@ -52,7 +52,7 @@ export default function App() {
             </Link>
             <div className="h-full flex flex-col justify-center items-center text-white cursor-pointer">
               <img className="h-1/5" src="../public/message.png" alt="" />
-              <span onClick={() => navigate('/archive')} className="text-sm">
+              <span onClick={() => navigate('/archive')} className="text-sm pretendard">
                 보관함
               </span>
             </div>

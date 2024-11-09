@@ -52,18 +52,19 @@ export default function Submitted() {
       >
         <div className="w-full flex flex-col justify-center items-center">
           <img className="h-1/6 mb-5" src="../../public/star.png" alt="" />
-          <h2 className="text-white text-2xl font-semibold">오늘의 조각글이</h2>
-          <h2 className="text-white text-2xl font-semibold mb-5">
+          <h2 className="text-white text-2xl font-semibold pretendard">오늘의 조각글이</h2>
+          <h2 className="text-white text-2xl font-semibold mb-5 pretendard">
             도착했습니다.
           </h2>
           <div className="text-center text-[#e8dfff] text-xs">
-            <div className="text-white">누군가의 조각글에 답장을 보내면,</div>
-            <div className="text-white">나의 조각글도 누군가에게 닿습니다.</div>
+            <div className="text-white pretendard">누군가의 조각글에 답장을 보내면,</div>
+            <div className="text-white pretendard">나의 조각글도 누군가에게 닿습니다.</div>
           </div>
         </div>
-        <button
+        <button 
           onClick={showMessage}
-          className="w-[306px] h-[39px] bg-white rounded-[21px] text-center align-middle text-[#2d1a58] text-xs "
+          className="w-[306px] h-[39px] bg-white rounded-[21px] text-center align-middle text-[#2d1a58] text-xs pretendard"
+ 
         >
           조각글 열어보기
         </button>
@@ -88,11 +89,13 @@ export default function Submitted() {
           mode={'writing'}
           comment={comment}
         />
+ 
         <div
           onClick={() => {
             onsubmit();
           }}
-          className=" w-5/6 py-2 text-center rounded-3xl text-xs h-[39px] bg-white"
+          className=" w-5/6 py-2 text-center rounded-3xl text-xs h-[39px] bg-white pretendard"
+ 
         >
           마음 전달하기
         </div>
@@ -108,16 +111,16 @@ export default function Submitted() {
       >
         <div className="w-full flex flex-col justify-center items-center">
           <img className="h-1/6 mb-5" src="../../public/star.png" alt="" />
-          <h2 className="text-white text-2xl font-semibold">조각글과 답장이</h2>
-          <h2 className="text-white text-2xl font-semibold mb-5">
+          <h2 className="text-white text-2xl font-semibold pretendard">조각글과 답장이</h2>
+          <h2 className="text-white text-2xl font-semibold mb-5 pretendard">
             전송되었습니다.
           </h2>
-          <h5 className="text-white">조각글의 답변이 도착하면</h5>
-          <h5 className="text-white">문자로 알려드립니다.</h5>
+          <h5 className="text-white pretendard">조각글의 답변이 도착하면</h5>
+          <h5 className="text-white pretendard">문자로 알려드립니다.</h5>
         </div>
         <button
           onClick={() => navigator('/main')}
-          className="w-5/6 h-[39px] bg-white rounded-[21px] text-center align-center"
+          className="w-5/6 h-[39px] bg-white rounded-[21px] text-center align-center pretendard"
         >
           확인
         </button>

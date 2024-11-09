@@ -16,6 +16,9 @@ export default function Send() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const currentDate = new Date();
+  const formattedDate = `${currentDate.getMonth() + 1}월 ${currentDate.getDate()}일`;
+
   const handleInputChange = (event) => {
     setJournalEntry(event.target.value);
   };
@@ -42,6 +45,7 @@ export default function Send() {
       !newErrors.nickname &&
       !newErrors.journalEntry
     ) {
+ 
       dispatch(setNumber(phoneNumber));
       navigate('/submitted');
       // try {
@@ -67,6 +71,7 @@ export default function Send() {
       //     }
       // } catch (error) {
       //     console.error('API 요청 오류:', error);
+ 
       // }
     }
   };
@@ -83,21 +88,22 @@ export default function Send() {
               className="h-auto w-1/6 m-auto"
               src="../../public/star.png"
               alt=""
-            />
-            <p className="text-white text-center text-3xl mb-1 mt-[12px] font-semibold">
-              11월 9일의 조각글
+            /> 
+            <p className="text-white text-center text-3xl mb-1 mt-[12px] font-semibold pretendard">
+              {formattedDate}의 조각글 
             </p>
-            <p className="text-purple-100 text-center text-base">
+            <p className="text-purple-100 text-center text-base pretendard">
               나의 조각글을 남기고 다른 조각글을 받아봐요
             </p>
           </div>
           {/* 전화번호 필드 */}
           <div>
-            <div className="flex items-center justify-start">
-              <label className="text-purple-100 text-xs font-medium ">
+            <div className="flex items-center justify-start"> 
+              <label className="text-purple-100 text-xs font-medium pretendard">
                 전화번호
               </label>
-              <span className="ml-2 text-white/60 text-[10px] font-normal font-['Pretendard Variable']">
+              <span className="ml-2 text-white/60 text-[10px] font-normal font-['Pretendard Variable'] pretendard">
+ 
                 *전화번호로 비밀번호와 답변 알림을 보내드려요
               </span>
             </div>
@@ -110,13 +116,16 @@ export default function Send() {
               className={`text-white transition-all duration-100 form-input-tel mt-[7px] px-5 py-2 text-xs outline-none 
                             focus:border-solid focus:border-white focus:border w-[306px] h-9 bg-[#7763a5]/50 rounded-[18px] ${
                               errors.phoneNumber ? 'wrong' : ''
-                            }`}
+ 
+                            } pretendard`}
+ 
               style={{ backgroundColor: '#6C548C' }}
             />
           </div>
           {/* 닉네임 필드 */}
-          <div>
-            <div className="text-xs font-medium text-purple-100">닉네임</div>
+          <div> 
+            <div className="text-xs font-medium text-purple-100 pretendard">닉네임</div>
+ 
             <input
               id="nickname"
               type="text"
@@ -128,13 +137,16 @@ export default function Send() {
                                       errors.nickname && nickname === ''
                                         ? 'wrong'
                                         : ''
-                                    } text-xs outline-none focus:border-solid focus:border-white focus:border`}
+ 
+                                    } text-xs outline-none focus:border-solid focus:border-white focus:border pretendard`}
+ 
               style={{ backgroundColor: '#6C548C' }}
             />
           </div>
           <div>
-            {/* 조각글 필드 */}
-            <label className="text-xs font-medium text-purple-100">
+            {/* 조각글 필드 */} 
+            <label className="text-xs font-medium text-purple-100 pretendard">
+ 
               조각글
             </label>
             <div className="relative w-full">
@@ -150,17 +162,20 @@ export default function Send() {
                               errors.journalEntry && journalEntry === ''
                                 ? 'wrong'
                                 : ''
-                            }`}
+ 
+                            } pretendard`}
                 style={{ backgroundColor: '#6C548C' }}
               />
-              <div className="absolute bottom-4 right-3 text-white/60 text-xs font-normal">
+              <div className="absolute bottom-4 right-3 text-white/60 text-xs font-normal pretendard">
+ 
                 {journalEntry.length}/{maxChars}
               </div>
             </div>
           </div>
           <button
-            onClick={handleSubmit}
-            className="w-[306px] h-[39px] bg-white/80 py-2 text-[#2d1a58] text-xs rounded-full"
+            onClick={handleSubmit} 
+            className="w-[306px] h-[39px] bg-white/80 py-2 text-[#2d1a58] text-xs rounded-full pretendard"
+ 
           >
             띄워보내기
           </button>

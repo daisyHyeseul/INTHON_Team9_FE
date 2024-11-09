@@ -22,9 +22,9 @@ export default function DiaryCont({ archiveItems }) {
         </span>
       </div>
       <div className=" border mt-[7px] border-[#e8dfff] w-full"></div>
-      <div className="cont py-4">
-        <span className="text-white text-xs font-normal">
-        {content}
+      <div className="cont py-4"> 
+        <span className="text-white text-xs font-normal pretendard">
+                 {content}
         </span> 
       </div>
     </div>

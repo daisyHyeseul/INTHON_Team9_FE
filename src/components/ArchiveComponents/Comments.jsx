@@ -7,8 +7,9 @@ export default function Comments ({items}){
             <div className="title text-center  py-5"><span className='text-2xl'>{items.user==='나' ? `익명으로부터` : 
             `내가 남긴 말` }</span></div>
             <div className='border-solid border-b-2 border-white w-full'></div>
-            <div className="cont py-5">
-                <span className='text-base '> {items.content}
+            <div className="cont py-5"> 
+                <span className='text-base pretendard'>{items.content}
+ 
                 </span>   
             </div>
         </div>
