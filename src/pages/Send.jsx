@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+
+import React, { useEffect, useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 export default function Send() {
@@ -27,83 +29,65 @@ export default function Send() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
         const newErrors = {
-            phoneNumber: !phoneNumber,
-            nickname: !nickname,
-            journalEntry: !journalEntry,
+            phoneNumber: !/^\d{3}-\d{3,4}-\d{4}$/.test(phoneNumber), // 정규식으로 폰번호 확인 (예: 010-1234-5678)
+            nickname: nickname.trim() === '', // 닉네임이 비어있는지 확인
+            journalEntry: journalEntry.trim() === '' // journalEntry가 비어있는지 확인
         };
 
         setErrors(newErrors);
-
         // 에러가 없을 때만 폼을 제출
         if (!newErrors.phoneNumber && !newErrors.nickname && !newErrors.journalEntry) {
-            const formData = {
-                phoneNumber,
-                nickname,
-                journalEntry,
-            };
+            // const formData = {
+            //     phoneNumber,
+            //     nickname,
+            //     journalEntry,
+            // };
+            navigate('/submitted')
+            // try {
+            //     const response = await fetch('/api/submit', {
+            //         method: 'POST',
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //         },
+            //         body: JSON.stringify(formData),
+            //     });
 
-            try {
-                const response = await fetch('/api/submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData),
-                });
+            //     if (response.ok) {
+            //         console.log('Data submitted successfully:', formData);
+            //         setPhoneNumber('');
+            //         setNickname('');
+            //         setJournalEntry('');
+            //         navigate('/Submitted');
+            //     } else {
+            //         console.error('Failed to submit data');
+            //     }
+            // } catch (error) {
+            //     console.error('Error submitting data:', error);
+            // }
 
-                if (response.ok) {
-                    console.log('Data submitted successfully:', formData);
-                    setPhoneNumber('');
-                    setNickname('');
-                    setJournalEntry('');
-                    navigate('/Submitted');
-                } else {
-                    console.error('Failed to submit data');
-                }
-            } catch (error) {
-                console.error('Error submitting data:', error);
-            }
         }
     };
 
     return (
-        <div className="flex flex-col justify-start items-center w-full min-h-screen bg-gradient-to-b from-purple-900 to-purple-600 p-4" style={{height:'85%'}}>
-            <style>{`
-                /* 회색 스크롤바 스타일 */
-                .custom-scrollbar {
-                    overflow-y: scroll;
-                    max-height: 200px; /* 컨텐츠 영역 높이를 제한하여 스크롤바 길이 제한 */
-                }
-
-                .custom-scrollbar::-webkit-scrollbar {
-                    width: 8px; /* 스크롤바 너비 설정 */
-                }
-
-                .custom-scrollbar::-webkit-scrollbar-track {
-                    background: transparent; /* 트랙 배경을 투명하게 설정 */
-                }
-
-                .custom-scrollbar::-webkit-scrollbar-thumb {
-                    background-color: #A0A0A0; /* 스크롤바 색상 (회색) */
-                    border-radius: 4px; /* 스크롤바 모서리를 둥글게 */
-                    height: 50px;
-                }
-            `}</style>
-            <div className="w-full max-w-3xl space-y-4 p-4">
-                <form className="flex flex-col w-full space-y-4">
-                    <p className="text-white text-center text-3xl mb-1 font-semibold">
-                        11월 9일의 조각글
-                    </p>
-                    <p className="text-white text-center text-base mb-2">
-                        나의 조각글을 남기고 다른 조각글을 받아봐요
-                    </p>
+        <div className="flex flex-col justify-start items-center w-full h-full bg-transparent px-4" style={{height:'85%'}}>
+            <div className=" archive-grid w-full max-w-3xl space-y-4 p-4 overflow-auto">
+                <form className="flex flex-col w-full space-y-4 gap-2">
+                    <div className='w-full h-full mb-5'>
+                        <img className='h-auto w-1/6 m-auto' src="../../public/star.png" alt="" />
+                        <p className="text-white text-center text-3xl mb-1 font-semibold">
+                            11월 9일의 조각글
+                        </p>
+                        <p className="text-purple-100 text-center text-base">
+                            나의 조각글을 남기고 다른 조각글을 받아봐요
+                        </p>
+                    </div>
 
                     {/* 전화번호 필드 */}
-                    <label className="text-base font-medium text-white">
+                    <label className="text-purple-100 text-sm font-medium ">
                         전화번호
-                        <span className="text-xs text-gray-200 font-xs ml-2">
+                        <span className=" text-xs ml-2 text-purple-200" >
+
                             *전화번호로 비밀번호와 답변 알림을 보내드려요
                         </span>
                     </label>
@@ -113,13 +97,15 @@ export default function Send() {
                         value={phoneNumber}
                         onChange={handlePhoneNumberChange}
                         placeholder="전화번호를 입력해주세요."
-                        className={`w-full p-4 rounded-full focus:outline-none ${
-                            errors.phoneNumber ? 'ring-2 ring-red-500' : 'focus:ring-2 focus:ring-white'
-                        } text-white bg-purple-300 placeholder-white`}
+
+                        className={`text-white transition-all duration-100 form-input-tel px-5 py-2 rounded-3xl text-sm outline-none 
+                            focus:border-solid focus:border-white focus:border-2  ${errors.phoneNumber && phoneNumber === '' ? 'wrong' : ''}`}
+                        style={{backgroundColor:'#6C548C'}}
                     />
 
                     {/* 닉네임 필드 */}
-                    <label className="text-base font-medium text-white">
+                    <label className="text-sm font-medium text-purple-100">
+
                         닉네임
                     </label>
                     <input
@@ -128,13 +114,15 @@ export default function Send() {
                         value={nickname}
                         onChange={handleNicknameChange}
                         placeholder="닉네임을 입력해주세요."
-                        className={`w-full p-4 rounded-full focus:outline-none ${
-                            errors.nickname ? 'ring-2 ring-red-500' : 'focus:ring-2 focus:ring-white'
-                        } text-white bg-purple-300 placeholder-white`}
+
+                        className={`text-white transition-all duration-100 form-input-tel px-5 py-2 rounded-3xl 
+                                    ${errors.nickname && nickname==='' ? 'wrong' : ''} text-sm outline-none focus:border-solid focus:border-white focus:border-2`}
+                    style={{backgroundColor:'#6C548C'}}
                     />
 
                     {/* 조각글 필드 */}
-                    <label className="text-base font-medium text-white">
+                    <label className="text-sm font-medium text-purple-100">
+
                         조각글
                     </label>
                     <div className="relative w-full">
@@ -145,9 +133,12 @@ export default function Send() {
                             placeholder="어떤 이야기든 괜찮아요. 자유롭게 글을 작성해주세요."
                             rows="8"
                             maxLength={maxChars}
-                            className={`w-full p-4 rounded-3xl focus:outline-none resize-none ${
-                                errors.journalEntry ? 'ring-2 ring-red-500' : 'focus:ring-2 focus:ring-white'
-                            } text-white bg-purple-300 placeholder-white scroll-smooth custom-scrollbar`}
+
+                            className={`w-full p-4 rounded-3xl focus:outline-none resize-none focus:border-solid focus:border-white focus:border-2
+                            text-white scroll-smooth text-sm ${errors.journalEntry && journalEntry === '' ? 'wrong' : ''}`}
+                            style={{backgroundColor:'#6C548C'}}
+                            
+
                     />
                         <div className="absolute bottom-2 right-3 text-white text-sm">
                             {journalEntry.length}/{maxChars}
@@ -157,7 +148,9 @@ export default function Send() {
 
                 <button
                     onClick={handleSubmit}
-                    className="w-full py-3 bg-white text-black rounded-full text-lg hover:bg-gray-300 transition-colors mt-4"
+
+                    className="w-full py-2 bg-white text-black rounded-full text-base "
+
                 >
                     띄워보내기
                 </button>

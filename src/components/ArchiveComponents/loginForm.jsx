@@ -1,10 +1,15 @@
-import PropTypes from 'prop-types';
+
+import { useDispatch } from 'react-redux';
+import { toggleLogin } from '../../features/loginSlice';
 
 
-export default function LoginForm ({setLogin}){
-    function isValid(){
-        setLogin(true)
-    }
+export default function LoginForm (){
+
+    const dispatch = useDispatch();
+    const isValid = () => {
+        dispatch(toggleLogin()); // 클릭 시 login 상태를 true로 변경
+    };
+
     return (
         <div className="login-form-container w-full h-full flex flex-col justify-center items-center gap-10">
             <div className="form-group flex flex-col text-white w-5/6 gap-2">
@@ -32,7 +37,5 @@ export default function LoginForm ({setLogin}){
     )
 }
 
-LoginForm.propTypes = {
-    setLogin: PropTypes.func.isRequired,
-};
+
   

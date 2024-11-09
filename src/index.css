@@ -45,13 +45,17 @@ body{
   margin: 0;
   position: relative;
   overflow: hidden;
-  background-color: #321E5B;
-  /* background: linear-gradient(to bottom, #321E5B, #9B6C9F); */
+  /* background-color: #321E5B; */
+
   font-family: 'font', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 0.3s ease;
+}
+
+.grad{
+  background: linear-gradient(to bottom, #321E5B, #9B6C9F);
 }
 #root{
   display: flex;
