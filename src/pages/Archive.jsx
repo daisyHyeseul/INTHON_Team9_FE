@@ -1,6 +1,7 @@
 
 import LoginForm from "../components/ArchiveComponents/loginForm";
 import ArchiveComponents from "../components/ArchiveComponents/archiveComp";
+
 import { useSelector } from 'react-redux';
 
 export default function Main()
@@ -15,6 +16,7 @@ export default function Main()
                 <LoginForm/>
             </div>
             <div className={`archive-grid  flex flex-wrap justify-between h-full overflow-auto transition-transform duration-500 ${login  ? 'translate-x-0 ' : 'translate-x-full'}`}
+
                 style={{ position: 'absolute', top: 0, left: login ? '5%' : '100%', width:'90%' }}>
                 <ArchiveComponents date={'2024-11-09'} isnew={false} type={'film'} summary={'삶의 불확실함 속에서 자신의 길을 찾고자 하는 마음'} 
                 writer={'로버트 프로스트'} title={'The Road Not Taken'}/>
