@@ -11,7 +11,7 @@ export default function Main()
     const login = useSelector((state) => state.login.isLoggedIn);
     document.querySelector('body').classList.remove('grad');
     document.querySelector('body').style.backgroundColor = '#321E5B';
-    const archiveItems = Array.from({ length: 30 }, (_, i) => ({
+    const archiveItems = Array.from({ length: 10 }, (_, i) => ({
         date: `2024-11-${(i % 2) + 8}`,
         isnew: i % 2 === 0,
         type: 'film',
@@ -72,8 +72,8 @@ export default function Main()
                 style={{ position: 'absolute', top: 0, left: 0 }}>
                 <LoginForm/>
             </div>
-            <div className={`archive-grid grid grid-cols-2 justify-between w-full h-auto gap-y-5 overflow-auto transition-transform duration-500 ${login  ? 'translate-x-0 ' : 'translate-x-full'}`}
-                style={{ position: 'absolute', top: 0, left: login ? '5%' : '100%', width:'90%' }}>
+            <div className={`archive-grid grid grid-cols-2 justify-between  gap-y-5 overflow-auto transition-transform duration-500 ${login  ? 'translate-x-0 ' : 'translate-x-full'}`}
+                style={{ position: 'absolute', top: 0, left: login ? '5%' : '100%', width:'90%' , height:'90%'}}>
                 {currentItems.map((item, index) => (
                     <div key={index} className="w-full h-full">
                         <ArchiveComponents item={item} />
