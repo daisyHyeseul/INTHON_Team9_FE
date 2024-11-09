@@ -47,7 +47,7 @@ export default function App() {
               to="/send"
               className="h-full flex items-center text-white gap-3"
             >
-              <img className="h-1/3" src="../public/moon.png" alt="" />
+              <img className="h-1/3" src="/moon.png" alt="" />
               나의 조각집
             </Link>
             <div className="h-full flex flex-col justify-center items-center text-white cursor-pointer">
