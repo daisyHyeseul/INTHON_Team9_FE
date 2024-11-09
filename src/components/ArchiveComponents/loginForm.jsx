@@ -41,8 +41,8 @@ export default function LoginForm() {
 
   return (
     <div className="login-form-container w-full h-full flex flex-col justify-center items-center gap-10">
-      <div className="form-group flex flex-col text-white w-5/6 gap-2">
-        <label className="form-label text-base">전화번호</label>
+      <div className="form-group flex flex-col text-[#e8dfff] w-5/6 gap-2">
+        <label className="form-label text-xs font-normal">전화번호</label>
         <input
           type="text"
           placeholder="전화번호를 입력해주세요."
@@ -53,10 +53,10 @@ export default function LoginForm() {
         />
       </div>
 
-      <div className="form-group flex flex-col text-white w-5/6 gap-2">
-        <label className="form-label  text-base">
+      <div className="form-group flex flex-col text-[#e8dfff] w-5/6 gap-2">
+        <label className="form-label text-xs font-normal">
           비밀번호{' '}
-          <span className="subtext text-xs ml-2 text-purple-200">
+          <span className="subtext text-white/60 text-[10px] ml-2 ">
             *문자로 전송되었던 비밀번호를 입력해주세요
           </span>
         </label>
