@@ -1,30 +1,37 @@
-
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
 export default function Send() {
-    const maxChars = 500;
-    const [journalEntry, setJournalEntry] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [nickname, setNickname] = useState('');
-    const [errors, setErrors] = useState({
-        phoneNumber: false,
-        nickname: false,
-        journalEntry: false,
-    });
-    const navigate = useNavigate();
+  const maxChars = 500;
+  const [journalEntry, setJournalEntry] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [errors, setErrors] = useState({
+    phoneNumber: false,
+    nickname: false,
+    journalEntry: false,
+  });
+  const navigate = useNavigate();
 
-    const handleInputChange = (event) => {
-        setJournalEntry(event.target.value);
-    };
+  const handleInputChange = (event) => {
+    setJournalEntry(event.target.value);
+  };
 
-    const handlePhoneNumberChange = (event) => {
-        setPhoneNumber(event.target.value);
-    };
+  const handlePhoneNumberChange = (event) => {
+    setPhoneNumber(event.target.value);
+  };
 
-    const handleNicknameChange = (event) => {
-        setNickname(event.target.value);
+  const handleNicknameChange = (event) => {
+    setNickname(event.target.value);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const newErrors = {
+      phoneNumber: !/^\d{10,11}$/.test(phoneNumber), // 정규식으로 폰번호 확인 (예: 010-1234-5678)
+      nickname: nickname.trim() === '', // 닉네임이 비어있는지 확인
+      journalEntry: journalEntry.trim() === '', // journalEntry가 비어있는지 확인
     };
 
     const handleSubmit = async (event) => {
@@ -158,3 +165,4 @@ export default function Send() {
         </div>
     );
 }
+
