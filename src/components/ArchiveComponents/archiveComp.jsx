@@ -9,10 +9,10 @@ export default function ArchiveComponents({ item }) {
     const formattedDate = date.replace(/-/g, '.');
     
     const typeIcons = {
-        writing: '/public/writing.png',
-        film: '/public/film.png',
-        music: '/public/music.png',    // 예시: 음악 관련 type
-        picture: '/public/picture.png',
+        writing: '/writing.png',
+        film: '/film.png',
+        music: '/music.png',    // 예시: 음악 관련 type
+        picture: '/picture.png',
     };
     const iconSrc = typeIcons[type];
     const navigate = useNavigate();
@@ -31,20 +31,22 @@ export default function ArchiveComponents({ item }) {
                 <div className="text-white flex flex-col">
                     <div className='text-xl font-bold'>{upComingdDate}</div>
                     <div className='text-[11px] font-semibold'>{formattedDate}</div>
-                </div>
-                {isnew && <span className="text-[10px] font-normal text-purple-100 ">new</span>}
+                </div> 
+                {isnew && <span className="text-[10px] font-normal text-purple-100 pretendard ">new</span>}
             </div>
 
             {/* 요약 텍스트 */}
-            <div className="text-white text-xs font-normal flex items-start flex-col gap-3 my-2">
+            <div className="text-white text-xs font-normal flex items-start flex-col pretendard gap-3 my-2">
+ 
                 <img src={iconSrc} alt="type icon" className="h-5" /> {/* 조건부 아이콘 */}
                 {summary}
             </div>
 
-            {/* 작가 및 제목 */}
+            {/* 작가 및 제목 */} 
             <div className="text-white w-full">
-                <div className="text-xs font-semibold">{ai}</div>
-                <div className="text-xs font-semibold">- {title}</div>
+                <div className="text-xs font-semibold pretendard">{ai}</div>
+                <div className="text-xs font-semibold pretendard">- {title}</div>
+ 
             </div>
         </div>
     );

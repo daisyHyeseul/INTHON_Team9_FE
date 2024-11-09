@@ -2,6 +2,7 @@ import LoginForm from '../components/ArchiveComponents/loginForm';
 import ArchiveComponents from '../components/ArchiveComponents/archiveComp';
 import {useState} from 'react';
 import { useSelector } from 'react-redux';
+
  
 export default function Main()
 {
@@ -64,8 +65,7 @@ export default function Main()
     //         title: 'The Road Not Taken'
     //     },
     // ];
-
-
+ 
     return (
         <div className="w-full h-full relative flex justify-center items-center overflow-hidden relative"   style={{ height: '85%' }}>
             <div className={`w-full h-full transition-transform duration-500 ${!login  ? 'translate-x-0' : '-translate-x-full'}`}
@@ -104,5 +104,5 @@ export default function Main()
             
         </div>
     )
-}
  
+}

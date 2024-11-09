@@ -32,11 +32,11 @@ export default function Main() {
       <img
         className="w-auto"
         style={{ height: '10%' }}
-        src="../../public/moon.png"
+        src="/moon.png"
         alt=""
       />
       <h1 className="text-white font-semibold text-xl">나의 조각집</h1>
-      <p className="text-white text-base">
+      <p className="text-white text-base pretendard">
         나와 닮은 마음을 발견하는 작은 쉼터
       </p>
     </div>

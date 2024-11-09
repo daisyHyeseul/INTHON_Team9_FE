@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 
 export default function Comments ({items}){
-    return (
+    return ( 
         <div className={`flex flex-col ${items.user ? items.user === '나' ? `items-end`  : `items-start` : 'items-center'} text-white w-5/6 p-6 rounded-2xl`} style={{backgroundColor : '#71648E'}}>
             
             {!items.user ? (
@@ -21,6 +21,7 @@ export default function Comments ({items}){
                 </>
             )}
             
+ 
         </div>
     )
 }
