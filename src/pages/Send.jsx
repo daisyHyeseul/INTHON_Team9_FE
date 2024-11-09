@@ -45,7 +45,7 @@ export default function Send() {
             };
 
             try {
-                const response = await fetch('/api/submit', {
+                const response = await fetch('https://2d56-163-152-3-142.ngrok-free.app/post/test', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
