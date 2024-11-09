@@ -1,14 +1,18 @@
 import DiaryCont from "../components/ViewComponents/DiaryCont";
 import Comments from "../components/ViewComponents/Comments";
+
 import { useNavigate } from 'react-router-dom';
+
 import { useState, useEffect } from "react";
 
 export default function Submitted() {
     const [issent, setIssent] = useState('begin');
     const [comment, setComment] = useState('');
+
     const navigator = useNavigate();
     useEffect(() => {
         document.querySelector('body').classList.remove('grad');
+
         if (issent === 'begin') {
             document.querySelector('body').style.backgroundColor = '#3F2763'; 
         } else if (issent === 'main') {
@@ -78,6 +82,7 @@ export default function Submitted() {
                 </div>
                 <div
                     onClick={() => navigator('/main')}
+
                     className="w-3/5 py-2 text-center rounded-3xl"
                     style={{ backgroundColor: '#D2D0D9' }}
                 >

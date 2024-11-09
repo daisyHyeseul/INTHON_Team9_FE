@@ -1,4 +1,6 @@
+
 import React, { useEffect, useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 export default function Send() {
@@ -12,6 +14,7 @@ export default function Send() {
         journalEntry: false,
     });
     const navigate = useNavigate();
+
     const handleInputChange = (event) => {
         setJournalEntry(event.target.value);
     };
@@ -26,7 +29,6 @@ export default function Send() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        
         const newErrors = {
             phoneNumber: !/^\d{3}-\d{3,4}-\d{4}$/.test(phoneNumber), // 정규식으로 폰번호 확인 (예: 010-1234-5678)
             nickname: nickname.trim() === '', // 닉네임이 비어있는지 확인
@@ -63,6 +65,7 @@ export default function Send() {
             // } catch (error) {
             //     console.error('Error submitting data:', error);
             // }
+
         }
     };
 
@@ -84,6 +87,7 @@ export default function Send() {
                     <label className="text-purple-100 text-sm font-medium ">
                         전화번호
                         <span className=" text-xs ml-2 text-purple-200" >
+
                             *전화번호로 비밀번호와 답변 알림을 보내드려요
                         </span>
                     </label>
@@ -93,6 +97,7 @@ export default function Send() {
                         value={phoneNumber}
                         onChange={handlePhoneNumberChange}
                         placeholder="전화번호를 입력해주세요."
+
                         className={`text-white transition-all duration-100 form-input-tel px-5 py-2 rounded-3xl text-sm outline-none 
                             focus:border-solid focus:border-white focus:border-2  ${errors.phoneNumber && phoneNumber === '' ? 'wrong' : ''}`}
                         style={{backgroundColor:'#6C548C'}}
@@ -100,6 +105,7 @@ export default function Send() {
 
                     {/* 닉네임 필드 */}
                     <label className="text-sm font-medium text-purple-100">
+
                         닉네임
                     </label>
                     <input
@@ -108,6 +114,7 @@ export default function Send() {
                         value={nickname}
                         onChange={handleNicknameChange}
                         placeholder="닉네임을 입력해주세요."
+
                         className={`text-white transition-all duration-100 form-input-tel px-5 py-2 rounded-3xl 
                                     ${errors.nickname && nickname==='' ? 'wrong' : ''} text-sm outline-none focus:border-solid focus:border-white focus:border-2`}
                     style={{backgroundColor:'#6C548C'}}
@@ -115,6 +122,7 @@ export default function Send() {
 
                     {/* 조각글 필드 */}
                     <label className="text-sm font-medium text-purple-100">
+
                         조각글
                     </label>
                     <div className="relative w-full">
@@ -125,10 +133,12 @@ export default function Send() {
                             placeholder="어떤 이야기든 괜찮아요. 자유롭게 글을 작성해주세요."
                             rows="8"
                             maxLength={maxChars}
+
                             className={`w-full p-4 rounded-3xl focus:outline-none resize-none focus:border-solid focus:border-white focus:border-2
                             text-white scroll-smooth text-sm ${errors.journalEntry && journalEntry === '' ? 'wrong' : ''}`}
                             style={{backgroundColor:'#6C548C'}}
                             
+
                     />
                         <div className="absolute bottom-2 right-3 text-white text-sm">
                             {journalEntry.length}/{maxChars}
@@ -138,7 +148,9 @@ export default function Send() {
 
                 <button
                     onClick={handleSubmit}
+
                     className="w-full py-2 bg-white text-black rounded-full text-base "
+
                 >
                     띄워보내기
                 </button>
