@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 
 
 export default function Comments ({items}){
+    console.log(items)
     return ( 
         <div className={`flex flex-col ${items.user ? items.user === '나' ? `items-end`  : `items-start` : 'items-center'} text-white w-5/6 p-6 rounded-2xl`} style={{backgroundColor : '#71648E'}}>
             
@@ -28,8 +29,8 @@ export default function Comments ({items}){
 
 Comments.propTypes = {
     items: PropTypes.shape({
-        user: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired,
+        user: PropTypes.string,
+        content: PropTypes.string,
     }).isRequired,
 };
   

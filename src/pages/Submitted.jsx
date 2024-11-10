@@ -1,13 +1,17 @@
 import DiaryCont from '../components/ViewComponents/DiaryCont';
 import Comments from '../components/ViewComponents/Comments';
-
+import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 
 export default function Submitted() {
   const [issent, setIssent] = useState('begin');
   const [comment, setComment] = useState('');
+  const [archiveItems, setArchiveItems]=useState({})
+  const phonenumber= useSelector((state) => state.user.number);
+  const data = useSelector((state) => state.post.postId);
+  console.log(data)
   const navigator = useNavigate();
   const maxChars = 250;
   useEffect(() => {
@@ -24,18 +28,63 @@ export default function Submitted() {
     if (comment.length === 0) {
       document.querySelector('.writing-area') ? document.querySelector('.writing-area').classList.add('wrong') : '';
     } else {
+      const postData = async () => {
+        const formData = new FormData();
+        formData.append('commentContent', comment);
+        formData.append('phone', phonenumber);
+        formData.append('postId', data)
+        try {
+            const response = await fetch(`https://ae78-163-152-3-142.ngrok-free.app/api/v1/post/detail/${data}`, {
+                method: 'POST'
+            });
+            const result = await response.json();
+            if (response.ok) {
+                console.log('서버 응답:', result);
+                setArchiveItems({
+                  date:result.data.createdDate.split('T')[0],
+                  writer:'익명',
+                  content:result.data.content
+                })
+                console.log(archiveItems)
+            }
+            
+        } catch (error) {
+            console.error('요청 오류:', error);
+        }
+    };
+    
+    // 함수 호출 예시
+    postData();
       setIssent('end');
     }
   };
   const showMessage = () => {
+    const postData = async () => {
+      try {
+          const response = await fetch(`https://ae78-163-152-3-142.ngrok-free.app/api/v1/post/detail/${data}`, {
+              method: 'POST'
+          });
+          const result = await response.json();
+          if (response.ok) {
+              console.log('서버 응답:', result);
+              setArchiveItems({
+                date:result.data.createdDate.split('T')[0],
+                writer:'익명',
+                content:result.data.content
+              })
+              console.log(archiveItems)
+          }
+          
+      } catch (error) {
+          console.error('요청 오류:', error);
+      }
+  };
+  
+  // 함수 호출 예시
+  postData();
     setIssent('main');
   };
-  const archiveItems = {
-    date: '2024-11-09',
-    writer: '도담',
-    content:
-      '요즘 내가 잘 하고 있는건지 이렇게 계속 졸업을 미뤄도 되는 건지 고민이 될 때가 있다. 주변에 다행히 창업하는 사람들이 있어서 그 사람들을 보면서 안도하기도 하지만, 좋은 기업에 취직하는 친구들을 보면 불안하고 조급한 마음도 든다.  내가 너무 늦어지는 건 아닐까, 이렇게 늦게까지 취직 안해도 나중에 가정을 꾸리고 결혼하고 하는데 문제가 없을까? 무엇보다 지금 하는 일이 어떻게 끝이 날지 감조차 오지 않는다.?',
-  };
+  
 
   return (
     <div

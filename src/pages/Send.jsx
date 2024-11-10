@@ -13,6 +13,7 @@ export default function Send() {
     nickname: false,
     journalEntry: false,
   });
+  const [twinId,settwinId]=useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -52,6 +53,29 @@ export default function Send() {
           formData.append('nickname', nickname);
           formData.append('phone', phoneNumber);
 
+          const postData = async () => {
+            try {
+                const response = await fetch(`https://ae78-163-152-3-142.ngrok-free.app/api/v1/post/similar`, {
+                    method: 'POST'
+                });
+                const result = await response.json();
+                if (response.ok) {
+                    console.log('서버 응답:', result);
+                    settwinId(result.data)
+                    dispatch(setpostId(result.data));
+                    console.log(result.data)
+                    formData.append('twinPostId',result.data);
+                }
+                
+            } catch (error) {
+                console.error('요청 오류:', error);
+            }
+        };
+        
+        // 함수 호출 예시
+        postData();
+
+
           // API 요청
           const response = await fetch('https://ae78-163-152-3-142.ngrok-free.app/api/v1/post', {
               method: 'POST',
@@ -63,7 +87,8 @@ export default function Send() {
           if (response.ok) {
               console.log(result.message);
               dispatch(setNumber(phoneNumber));
-              navigate('/submitted');
+              
+              navigate('/submitted',{ state: twinId });
             
                // 성공 시 페이지 이동
           } else {
