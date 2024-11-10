@@ -61,7 +61,7 @@
 ├── server/                     # 백엔드 코드 (Spring Framework)
 │   ├── src/main/java/          
 │   │   └── com/example/        
-│   │       ├── config/         # Spring 설정 파일 (Java 설정 또는 XML)
+│   │       ├── config/         # Spring 설정 파일
 │   │       ├── controller/     # API 엔드포인트 컨트롤러
 │   │       ├── service/        # 비즈니스 로직 처리
 │   │       └── repository/     # 데이터베이스 인터페이스
