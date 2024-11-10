@@ -51,26 +51,25 @@
 
 ```plaintext
 .
-├── client/                 # 프론트엔드 코드 (React)
+├── client/                     # 프론트엔드 코드 (React)
 │   ├── src/
-│   │   ├── components/     # UI 컴포넌트 모음 (예: 입력 폼, 버튼 등)
-│   │   ├── pages/          # 각 페이지 컴포넌트 (예: Send, Submitted 등)
-│   │   ├── assets/         # 이미지, 아이콘 등 정적 파일
-│   │   ├── App.js          # 최상위 App 컴포넌트
-│   │   ├── index.js        # 엔트리 포인트
-│   │   └── ...             # 기타 폴더 및 파일
-│   └── public/             # 정적 파일 (favicon, HTML 템플릿 등)
+│   │   ├── components/         # UI 컴포넌트
+│   │   ├── pages/              # 각 페이지 컴포넌트
+│   │   └── App.js              # 최상위 App 컴포넌트
+│   └── public/                 # 정적 파일 (이미지 등)
 │
-├── server/                 # 백엔드 코드 (Spring Boot)
-│   ├── src/main/java/      # Java 소스 파일
-│   │   ├── com/example/    # 주요 패키지
-│   │   │   ├── controller/ # API 엔드포인트 컨트롤러 (예: 조각글, 답변 등록 API)
-│   │   │   ├── service/    # 서비스 로직
-│   │   │   └── repository/ # 데이터베이스 인터페이스
-│   ├── resources/          # 설정 파일 (application.yml 등)
-│   └── build.gradle        # Gradle 빌드 설정
+├── server/                     # 백엔드 코드 (Spring Framework)
+│   ├── src/main/java/          
+│   │   └── com/example/        
+│   │       ├── config/         # Spring 설정 파일 (Java 설정 또는 XML)
+│   │       ├── controller/     # API 엔드포인트 컨트롤러
+│   │       ├── service/        # 비즈니스 로직 처리
+│   │       └── repository/     # 데이터베이스 인터페이스
+│   ├── src/main/resources/     
+│   │   ├── applicationContext.xml  # Spring 기본 설정 파일
+│   │   └── application.properties  # 환경 설정 (DB 정보 등)
+│   └── pom.xml                 # Maven 빌드 설정
 │
-├── .env                    # 환경 변수 파일 (API URL, API 키 등)
-├── .gitignore              # Git에서 제외할 파일 목록
-├── README.md               # 프로젝트 설명 파일
-└── LICENSE                 # 라이선스 파일
+├── .gitignore                  # Git에서 제외할 파일 목록
+├── README.md                   # 프로젝트 설명 파일
+└── LICENSE                     # 라이선스 파일
