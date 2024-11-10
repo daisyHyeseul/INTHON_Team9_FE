@@ -12,8 +12,12 @@ export default function LastView() {
     const [view,setView] = useState('myCont')
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [contentData,setContentData] = useState('');
-    const [similarId, setSimilarId] = useState('');
+    const [similarId, setSimilarId] = useState('67301d120ee48950e3a91f31');
     const [comments, setcomments] = useState('');
+    const [similardate,setsimilardate]= useState('');
+    const [similarWriter,setsimilarWriter]= useState('');
+    const [similarCont, setsimilarCont]= useState('');
+    const [similarComment, setsimilarComment] = useState('')
     const typeIcons = {
         '글': '/writing_filled.png',
         '영화': '/film_filled.png',
@@ -28,17 +32,17 @@ export default function LastView() {
         content: contentData,
     };
     const archiveItemsFromUnknown = {
-        date: data.createdDate.split('T')[0],
-        writer: 'data.writer',
-        content: 'data.content',
+        date: similardate,
+        writer: similarWriter, //수정
+        content: similarCont, //수정
     };
     const commentItemsFromUnknown = {
-        user : comments === '' ? '익명' : '나',
+        user : comments === '' ? '나' : '',
         content : comments 
     }
     const commentItemsToUnknown = {
-        user :  '도담',
-        content : '요즘 에 다행히 창업하는 사람들이 있어서 그 사람들을 보면서 안도하기도 하지만, '
+        user :  '익명',
+        content : similarComment //수정
     }
     const iconSrc = typeIcons[data.category];
     useEffect(()=>{
@@ -73,8 +77,9 @@ export default function LastView() {
                 }
                 
                 const result = await response.json();
-                setContentData(result.content)
-                setcomments(result.comments ? result.comments[0] : '')
+                setContentData(result.data.content)
+                setcomments(result.data.comments ? result.data.comments[0] : '')
+                result.data.twinPostId ? setSimilarId(result.data.twinPostId) : '';
                 console.log('서버 응답:', result);
             } catch (error) {
                 console.error('요청 오류:', error);
@@ -89,7 +94,7 @@ export default function LastView() {
         {
             const postData = async () => {
                 try {
-                    const response = await fetch(`https://ae78-163-152-3-142.ngrok-free.app/api/v1/post/detail/${data.id}`, {
+                    const response = await fetch(`https://ae78-163-152-3-142.ngrok-free.app/api/v1/post/detail/${similarId}`, {
                         method: 'POST'
                     });
                     
@@ -98,6 +103,11 @@ export default function LastView() {
                     }
                     
                     const result = await response.json();
+                    setsimilarComment(result.data.comments ? result.data.comments[0] : '')
+                    setsimilarCont(result.data.content)
+                    setsimilarWriter('익명')
+                    setsimilardate(result.data.createdDate.split('.')[0] + '.')
+                
                     console.log('서버 응답:', result);
                 } catch (error) {
                     console.error('요청 오류:', error);
@@ -108,6 +118,8 @@ export default function LastView() {
             postData();
         }
     },[similarId])
+    // useEffect(()=>{
+    // },[view])
     return (
         <div className='w-full h-full relative flex flex-col items-center p-4 text-white overflow-auto' style={{ backgroundColor: '#321E5B'}}>
             {/* 상단 전환 버튼 */}
@@ -141,7 +153,7 @@ export default function LastView() {
             </div>
  
             <img className='h-16 my-5' src="/star.png" alt="" /> 
-            <div className='flex flex-col gap-10 justify-center items-center'>
+            <div className='flex flex-col gap-10 w-full justify-center items-center'>
                 <DiaryCont archiveItems={view === 'myCont' ? archiveItemsToUnknown : archiveItemsFromUnknown}></DiaryCont>
                 <Comments items={view === 'myCont' ?  commentItemsFromUnknown :commentItemsToUnknown }></Comments>
             </div>
