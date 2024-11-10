@@ -33,9 +33,9 @@ export default function DiaryCont({ archiveItems }) {
 
 DiaryCont.propTypes = {
   archiveItems: PropTypes.shape({
-      date: PropTypes.string.isRequired,
-      writer: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired,
+      date: PropTypes.string,
+      writer: PropTypes.string,
+      content: PropTypes.string,
   }).isRequired,
 };
 
