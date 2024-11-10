@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setNumber } from '../features/userSlice';
-
+import { setpostId } from '../features/postSlice';
 export default function Send() {
   const maxChars = 500;
   const [journalEntry, setJournalEntry] = useState('');
@@ -45,34 +45,34 @@ export default function Send() {
       !newErrors.nickname &&
       !newErrors.journalEntry
     ) {
- 
-      dispatch(setNumber(phoneNumber));
-      navigate('/submitted');
-      // try {
-      //     // FormData 생성
-      //     const formData = new FormData();
-      //     formData.append('content', journalEntry);
-      //     formData.append('nickname', nickname);
-      //     formData.append('phone', phoneNumber);
+      try {
+          // FormData 생성
+          const formData = new FormData();
+          formData.append('content', journalEntry);
+          formData.append('nickname', nickname);
+          formData.append('phone', phoneNumber);
 
-      //     // API 요청
-      //     const response = await fetch('https://2d56-163-152-3-142.ngrok-free.app/api/v1/post', {
-      //         method: 'POST',
-      //         body: formData
-      //     });
-
-      //     // 응답 처리
-      //     const result = await response.json();
-      //     if (response.ok) {
-      //         console.log(result.message);
-      //         navigate('/submitted'); // 성공 시 페이지 이동
-      //     } else {
-      //         console.error('저장 실패:', result);
-      //     }
-      // } catch (error) {
-      //     console.error('API 요청 오류:', error);
+          // API 요청
+          const response = await fetch('https://ae78-163-152-3-142.ngrok-free.app/api/v1/post', {
+              method: 'POST',
+              body: formData
+          });
+          
+          // 응답 처리
+          const result = await response.json();
+          if (response.ok) {
+              console.log(result.message);
+              dispatch(setNumber(phoneNumber));
+              navigate('/submitted');
+            
+               // 성공 시 페이지 이동
+          } else {
+              console.error('저장 실패:', result);
+          }
+      } catch (error) {
+          console.error('API 요청 오류:', error);
  
-      // }
+      }
     }
   };
 

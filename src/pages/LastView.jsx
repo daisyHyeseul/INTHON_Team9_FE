@@ -5,41 +5,109 @@ import Comments from '../components/ArchiveComponents/Comments'
 export default function LastView() {
     const location = useLocation();
     const data = location.state; // 전달된 데이터를 가져옴
-    const formattedDate = new Date(data.date);
+    const formattedDate = new Date(data.createdDate.split('T')[0]);
     const year = formattedDate.getFullYear();
     const month = formattedDate.toLocaleString('ko-KR', { month: 'long' });
     const day = formattedDate.getDate();
     const [view,setView] = useState('myCont')
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [contentData,setContentData] = useState('');
+    const [similarId, setSimilarId] = useState('');
+    const [comments, setcomments] = useState('');
     const typeIcons = {
-        writing: '/writing_filled.png',
-        film: '/film_filled.png',
-        music: '/music_filled.png',    // 예시: 음악 관련 type
-        picture: '/picture_filled.png',
+        '글': '/writing_filled.png',
+        '영화': '/film_filled.png',
+        '드라마': '/film_filled.png',
+        '음악': '/music_filled.png',    // 예시: 음악 관련 type
+        '그림': '/picture_filled.png',
     };
+    const summary = data.authorMessage.split('.')[0] + '.';
     const archiveItemsToUnknown = {
-        date: data.date,
+        date: data.createdDate.split('T')[0],
         writer: '나',
-        content: data.content,
+        content: contentData,
     };
     const archiveItemsFromUnknown = {
-        date: data.date,
-        writer: data.writer,
-        content: data.content,
+        date: data.createdDate.split('T')[0],
+        writer: 'data.writer',
+        content: 'data.content',
     };
     const commentItemsFromUnknown = {
-        user : '나',
-        content : '요즘 내가 잘 하고 있는건지 이렇게 계속 졸업을 미뤄도 되는 건지 고민이 될 때가 있다.주변에 다행히 창업하는 사람들이 있어서 그 사람들을 보면서 안도하기도 하지만, '
+        user : comments === '' ? '익명' : '나',
+        content : comments 
     }
     const commentItemsToUnknown = {
         user :  '도담',
         content : '요즘 에 다행히 창업하는 사람들이 있어서 그 사람들을 보면서 안도하기도 하지만, '
     }
-    const iconSrc = typeIcons[data.type];
-
+    const iconSrc = typeIcons[data.category];
     useEffect(()=>{
         document.querySelector('.lastViewTitle').textContent=`${year}년 ${month} ${day}일의 조각글`;
+        // const postData = async () => {
+        //     try {
+        //         const response = await fetch(`https://ae78-163-152-3-142.ngrok-free.app/api/v1/post/similar`, {
+        //             method: 'POST'
+        //         });
+                
+        //         if (!response.ok) {
+        //             throw new Error('데이터 전송에 실패했습니다.');
+        //         }
+                
+        //         const result = await response.json();
+        //         console.log('서버 응답:', result);
+        //     } catch (error) {
+        //         console.error('요청 오류:', error);
+        //     }
+        // };
+        
+        // // 함수 호출 예시
+        // postData();
+        const postData = async () => {
+            try {
+                const response = await fetch(`https://ae78-163-152-3-142.ngrok-free.app/api/v1/post/detail/${data.id}`, {
+                    method: 'POST'
+                });
+                
+                if (!response.ok) {
+                    throw new Error('데이터 전송에 실패했습니다.');
+                }
+                
+                const result = await response.json();
+                setContentData(result.content)
+                setcomments(result.comments ? result.comments[0] : '')
+                console.log('서버 응답:', result);
+            } catch (error) {
+                console.error('요청 오류:', error);
+            }
+        };
+        
+        // 함수 호출 예시
+        postData();
     },[])
+    useEffect(()=>{
+        if(similarId.length>0)
+        {
+            const postData = async () => {
+                try {
+                    const response = await fetch(`https://ae78-163-152-3-142.ngrok-free.app/api/v1/post/detail/${data.id}`, {
+                        method: 'POST'
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error('데이터 전송에 실패했습니다.');
+                    }
+                    
+                    const result = await response.json();
+                    console.log('서버 응답:', result);
+                } catch (error) {
+                    console.error('요청 오류:', error);
+                }
+            };
+            
+            // 함수 호출 예시
+            postData();
+        }
+    },[similarId])
     return (
         <div className='w-full h-full relative flex flex-col items-center p-4 text-white overflow-auto' style={{ backgroundColor: '#321E5B'}}>
             {/* 상단 전환 버튼 */}
@@ -67,8 +135,8 @@ export default function LastView() {
             <div  onClick={() => setIsModalOpen(true)} className="text-center flex flex-col justify-center items-center gap-2 py-3 w-5/6 rounded-xl bg-white/90 text-black" > 
                 <img src={iconSrc} alt="type icon" className="h-5 mb-2" />
 
-                <p className="text-xs font-normal m-0 pretendard">{data.summary}</p>
-                <p className="text-xs font-semibold m-0 pretendard">{data.ai} - {data.title}</p>
+                <p className="text-xs font-normal m-0 pretendard">{summary}</p>
+                <p className="text-xs font-semibold m-0 pretendard">{data.author}</p>
 
             </div>
  
@@ -95,14 +163,11 @@ export default function LastView() {
                     <img src={iconSrc} alt="type icon" className="w-[17px] h-[17px]" />
                     <div className=''>
                         <p className='text-sm font-semibold pretendard'>{data.title}</p>
-                        <p className='text-xs font-normal pretendard'>{data.ai}</p>
+                        <p className='text-xs font-normal pretendard'>{data.author}</p>
                     </div>
                     <div className='border-solid border-2 w-1/3 border-purple-950'></div>
-                    <p className='m-3 text-[10px] pretendard'>저는 두 갈래 길 앞에서 늘 고민하며, 어느 쪽이 맞는 길일지 몰라 방황했어요. 
-                        그래서 이 시를 통해 선택의 어려움과 혼란을 표현하고자 했습니다. 각자의 길은 다 다르고, 
-                        내가 걷는 길도 결국 나만의 이야기를 만들어 주더군요. 남들과 다른 속도와 방향이지만, 그 길을 믿고 가세요. 
-                        지금도 충분히 잘하고 계십니다.</p>
-                    <p onClick={() => window.open('https://www.poetryfoundation.org/poems/44272/the-road-not-taken', '_blank')} className='w-full bg-purple-950 text-white py-3 rounded-3xl cursor-pointer text-xs font-normal'>더 알아보기</p>
+                    <p className='m-3 text-[10px] pretendard'>{data.authorMessage}</p>
+                    {/* <p onClick={() => window.open('https://www.poetryfoundation.org/poems/44272/the-road-not-taken', '_blank')} className='w-full bg-purple-950 text-white py-3 rounded-3xl cursor-pointer text-xs font-normal'>더 알아보기</p> */}
  
                 </div>
             </div>
