@@ -1,8 +1,29 @@
-# React + Vite
+# 나의 조각집
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+나의 조각집은 사용자가 "조각글"을 작성하고 다른 사용자의 조각글에 예술의 메시지를 전하며 조각집을 만들어나가는 프로젝트입니다.
 
-Currently, two official plugins are available:
+## 프로젝트 개요	
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 사용자 전화번호, 닉네임, 그리고 조각글을 작성하고 전송
+- 전송 후 응답 페이지로 이동하여 작성한 조각글 내용과 비슷한 다른 사용자의 조각글 확인
+- 다른 사용자의 조각글에 답장 작성
+- 보관함에서 자신의 조각글에 대한 답장 확인
+- 자신의 조각글을 위한 예술작품 추천
+
+## 주요 기능
+
+- **사용자 등록**: 사용자가 전화번호와 비밀번호를 통해 등록할 수 있으며, CoolSMS를 통해 인증번호를 전송하여 보안성을 강화
+- **조각글 작성 및 공유**: 사용자가 짧은 글을 작성하여 게시할 수 있으며, 다른 사용자와 글을 공유하거나 피드백을 받을 수 있음
+- **조각글 답변 기능**: 작성된 조각글에 대해 댓글을 통해 답변을 남길 수 있으며, 이를 통해 사용자 간 소통 가능
+- **자동 응답 생성**: GPT4o-mini를 이용해 조각글애 대해 예술작품을 자동 추천
+- **데이터 저장 및 관리**: MongoDB Atlas를 이용해 사용자 정보, 게시글, 댓글 등 애플리케이션 데이터를 안전하게 저장 및 관리
+
+## 기술 스택
+
+- **React**: 프론트엔드 UI 구축에 사용, 컴포넌트 기반으로 화면과 입력 폼 등을 구성
+- **Redux**: 전역 상태 관리에 사용, 사용자 데이터와 입력 값을 일관성 있게 유지
+- **Vercel**: 프론트엔드 배포에 사용, 애플리케이션을 쉽게 웹에 배포하고 사용자에게 제공
+- **Spring**: 백엔드 API 구축, 데이터 처리 및 클라이언트와의 통신 관리
+- **MongoDB Atlas**: 데이터 저장소로 사용, 사용자 정보와 게시글 데이터를 관리
+- **CoolSMS**: SMS 전송 API로, 인증번호나 알림 전송에 사용
+- **GPT4o-mini**: 조각글에 대한 예술작품 추천에 사용
